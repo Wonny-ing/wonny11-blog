@@ -1,8 +1,8 @@
 [
   {
-    "title": "2021년 리뷰",
-    "description": "2021년 한해 동안 배운 기술들, 생각들 정리",
-    "date": "2021-12-31",
+    "title": "2022년 리뷰",
+    "description": "프로젝트에서 문제상황 해결과정 정리",
+    "date": "2022-12-31",
     "category": "my story",
     "path": "review-2021",
     "featured": false
@@ -49,15 +49,15 @@
   },
   {
     "title": "리액트 Best Practice!",
-    "description": "리액트를 정확하게 사용하는 방법들을 정리",
+    "description": "리액트에 대해서 정리",
     "date": "2023-04-15",
     "category": "frontend",
     "path": "best-react-practices",
     "featured": true
   },
   {
-    "title": "리액트 18버전!",
-    "description": "리액트 18에 추가된 사항들 정리",
+    "title": "React Query란?",
+    "description": "React Query 사용법 정리",
     "date": "2023-05-02",
     "category": "frontend",
     "path": "react18-walkthrough",
@@ -65,8 +65,8 @@
   },
   {
     "title": "2023년 리뷰",
-    "description": "2023년 한해 동안 배운 기술들, 생각들 정리",
-    "date": "2023-12-31",
+    "description": "프로젝트 개발내용 정리 및 회고",
+    "date": "2023-05-05",
     "category": "my story",
     "path": "review-2023",
     "featured": true

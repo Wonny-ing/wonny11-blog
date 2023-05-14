@@ -1,34 +1,45 @@
-## 2022 Year Review!
+## 🔖 서비스 내용
 
-- Employee’s basic information. For identification and analysis purposes, it is also important that you add a section where the employee’s basic information can be written, including their name, ID, and position in the company.
-  Review period. To streamline the entire annual review process, it is critical that you add a section that states the period for which the review is being conducted.
-- Tasks to be evaluated. This is the main section of the annual review template, so mention all the yearly goals for which the employee is being evaluated.
-  Performance score rating. For each task mentioned earlier, make sure you leave adequate space where the reviewer can rate the employee's quality of work. You can do this through a 5-star review system, Likert scale or even by adding an empty box where reviewers can describe their evaluation. Some of
+영화와 드라마에 대한 줄거리 및 평점과 같은 정보들을 제공하는 서비스 입니다.
 
-## What Is an Annual Review?
+위 서비스에서 제공하는 핵심 기능은 2가지입니다.
 
-An annual review, or a year-end review, is the process of evaluating employee performance over the past year. Annual reviews are typically done by managers, but can also be self-conducted.
+1. 영화 검색 결과 필터링 기능
+2. 영화 리스트 한 번에 모아보기
 
-Generally, an annual performance assessment includes:
+## 🛠 기술 스택
 
-Tracking employee KPIs
-Identifying employee's strengths and weaknesses
-Measuring employee quality of work
-Providing feedback on potential areas of improvement
-Needless to say, an annual review is a critical part of any successful business.
+- Vanilla JavaScript
 
-It helps businesses identify high-performing employees, boost employee engagement, relay expectations, and help foster a progressive environment of growth and progress.
+## ⌨️ 개발 내용
 
-On the other hand, employees can also use this time to communicate their future expectations to the company; be it their next year's KPIs, personal goals, monetary compensation, bonus structure breakdown, or expected promotions.
+### OMDB API(영화 데이터) 호출을 통해 영화 검색 기능 구현
 
-At the end of an annual review, managers evaluate whether the company's future goals align with employees' objectives, and decide if they should be recommended for a raise or promotion in the coming year.
+저는 OMDB API를 활용하여 영화 검색 기능을 구현하였습니다. 해당 기능은 사용자가 검색어를 입력하면 OMDB API를 호출하여 검색 결과를 화면에 렌더링해주는 기능입니다.
 
-## How to Write a Year-End Review
+이를 위해 먼저 OMDB API의 사용법을 숙지하고, API 요청을 보내는 함수를 작성하였습니다. API 요청은 Axios 라이브러리를 사용하여 비동기적으로 처리하였습니다. 이후, 사용자가 검색어를 입력하면 해당 검색어를 인자로 받아 API 요청 함수를 호출하고, 결과를 받아와 화면에 렌더링해주는 과정을 구현하였습니다.
 
-When it comes to preparing for a year-end review, there isn’t any one-size-fits-all approach.
+검색 결과는 각 영화의 포스터, 제목, 개봉연도 등의 정보를 포함하고 있으며, 이를 화면에 렌더링해주었습니다. 또한, 검색 결과가 없을 때에는 해당 내용을 사용자에게 알려주는 메시지를 띄워주었습니다.
 
-This is majorly due to the type of industry you’re in, and the fact that every employee has unique goals for which they’re being evaluated. But that doesn't mean that you can’t create a generic layout for all performance reviews.
+### 바닐라 자바스크립트로 SPA 구현
 
-In this section, we look at some of the most common sections you can add to your annual review templates:
+SPA(Single Page Application)를 구현하기 위해 hashchange를 이용한 Router를 구현했습니다. hashchange 이벤트를 사용하여 URL이 변경될 때마다 해당하는 라우팅 정보를 가져와 해당 컴포넌트를 렌더링하는 방식으로 동작합니다. 이를 통해, 페이지 전환 시 화면이 깜빡이지 않는 부드러운 화면 전환 효과를 구현할 수 있습니다. 이러한 Router 구현은 React와 같은 SPA 프레임워크에서 사용되는 react-router-dom 라이브러리를 이해하는 데 큰 도움이 되었습니다.
 
-Header. The header is the first thing that the reviewer and reviewee will notice on the annual review document, so it's a good idea to add your company’s name, logo and branding to give it an overall professional outlook. In Visme, you can upload your logo with a few clicks and add it to any project.
+### 무한스크롤 로직 구현
+
+사용자 경험을 증대시키기 위해 Intersection Observer를 사용하여 사용자가 페이지 하단에 도달할 경우 무한스크롤을 구현 하였습니다.
+자동 무한스크롤을 원하지 않는 사용자가 있을 경우를 대비하여 더보기 버튼을 추가하여 영화리스트를 추가로 보여줄 수 있도록 구현하였습니다.
+
+### 로딩 애니메이션
+
+사용자가 영화를 검색하는 동안 사용자 경험을 향상시키기 위해 로딩 애니메이션을 추가했습니다. 검색어를 입력하고 검색 버튼을 클릭하면, 영화 목록을 가져오기 전까지 로딩 바가 표시되며, 영화 목록을 가져오면 로딩 바가 사라집니다. 또한 영화 상세페이지를 클릭시, 영화 정보를 가져오기 전까지 로딩 바와 함께 스켈레톤 UI가 보여지도록 구현했습니다. 이를 통해 사용자는 검색이 진행되고 있음을 눈으로 확인할 수 있으며, 불편함 없이 서비스를 이용할 수 있습니다.
+
+## 💡 성장 경험
+
+### 처음으로 API 사용경험
+
+외부 API를 활용한 첫 번째 프로젝트였습니다. 이를 통해 데이터를 가져와 화면에 렌더링하는 방법을 익힐 수 있었으며, Axios 라이브러리의 활용도 높일 수 있었습니다. 또한, 검색 결과가 없을 때의 예외 처리를 다루는 경험을 쌓을 수 있었습니다.
+
+### 바닐라 자바스크립트로 프로젝트 구현
+
+hashchange를 이용한 Router 구현 프로젝트를 진행하면서, Router의 기본 개념을 이해하고, URL과 브라우저 히스토리를 관리하는 방법을 배웠습니다. 이 프로젝트를 통해, 라이브러리나 프레임워크를 사용하기 전에 해당 기능을 직접 구현해 보는 것이 중요하다는 것을 깨달았습니다.

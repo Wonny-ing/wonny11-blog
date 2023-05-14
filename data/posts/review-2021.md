@@ -1,34 +1,70 @@
-## 2021 Year Review!
+## 이솝 사이트 레이아웃 클론코딩
 
-- Employee’s basic information. For identification and analysis purposes, it is also important that you add a section where the employee’s basic information can be written, including their name, ID, and position in the company.
-  Review period. To streamline the entire annual review process, it is critical that you add a section that states the period for which the review is being conducted.
-- Tasks to be evaluated. This is the main section of the annual review template, so mention all the yearly goals for which the employee is being evaluated.
-  Performance score rating. For each task mentioned earlier, make sure you leave adequate space where the reviewer can rate the employee's quality of work. You can do this through a 5-star review system, Likert scale or even by adding an empty box where reviewers can describe their evaluation. Some of
+이번 과제는 주어진 html, css, js를 활용하여 자신이 원하는 사이트 레이아웃 클론코딩하는 것이었습니다.
+저는 그중에서 슬라이드 요소들과 modal창 등 웹사이트에 필요한 대부분의 요소들이 존재하는 이솝 사이트를 클론코딩을 하기로 했습니다.
 
-## What Is an Annual Review?
+이번 과제를 하면서 wheel event를 scroll event로 바꾸는 과정에서 애를 먹었는데 그 부분에 대해서 문제점과 해결방법을 정리해 보려고 합니다.
 
-An annual review, or a year-end review, is the process of evaluating employee performance over the past year. Annual reviews are typically done by managers, but can also be self-conducted.
+## 원본 사이트 & 클론 사이트
 
-Generally, an annual performance assessment includes:
+[이솝 홈페이지(원본)](https://www.aesop.com/kr/?gclid=Cj0KCQjwwfiaBhC7ARIsAGvcPe6XwyDJ7XKkcsDGNM3a0Vkzv5ektQNtCDlCjHVYZHnww__PTnuH5VkaAri-EALw_wcB)
 
-Tracking employee KPIs
-Identifying employee's strengths and weaknesses
-Measuring employee quality of work
-Providing feedback on potential areas of improvement
-Needless to say, an annual review is a critical part of any successful business.
+[이솝 클론 사이트](https://aesop-clone-site.netlify.app/)
 
-It helps businesses identify high-performing employees, boost employee engagement, relay expectations, and help foster a progressive environment of growth and progress.
+### ❗️ 문제 현상
 
-On the other hand, employees can also use this time to communicate their future expectations to the company; be it their next year's KPIs, personal goals, monetary compensation, bonus structure breakdown, or expected promotions.
+해당 요소의 class 이름을 **`gnbBox`**로 지정했습니다.
 
-At the end of an annual review, managers evaluate whether the company's future goals align with employees' objectives, and decide if they should be recommended for a raise or promotion in the coming year.
+**`gnbBox`** 의 높이는 45px이고, position 값은 absolute 입니다.
 
-## How to Write a Year-End Review
+gnbBox가 스크롤을 내려서 뷰포트에서 사라질 때 gnbBox의 배경색을 변경해 주었고
 
-When it comes to preparing for a year-end review, there isn’t any one-size-fits-all approach.
+스크롤을 올릴때는 gnbBox의 position 값을 `fixed`로 설정해주고,
+스크롤을 내릴때는 gnbBox의 position 값을 `absolute`로 설정해 주었습니다.
 
-This is majorly due to the type of industry you’re in, and the fact that every employee has unique goals for which they’re being evaluated. But that doesn't mean that you can’t create a generic layout for all performance reviews.
+**`wheel 이벤트`** 로 구현했을 때, gnbBox의 닫기버튼을 눌러도 position 값이 그대로 `fixed` 인 것을 확인할 수 있습니다.
 
-In this section, we look at some of the most common sections you can add to your annual review templates:
+하지만 똑같은 조건으로 **`scroll 이벤트`** 로 구현했을때 gnbBox의 닫기버튼을 누르면 position 값이 `absolute` 로 변합니다.
 
-Header. The header is the first thing that the reviewer and reviewee will notice on the annual review document, so it's a good idea to add your company’s name, logo and branding to give it an overall professional outlook. In Visme, you can upload your logo with a few clicks and add it to any project.
+왜 이런 문제가 발생했는지 찾기 위해서 console에 **`window.scrollY`** 값을 출력해보았습니다.
+
+스크롤을 올릴때, `gnbBox` 의 position 값이 **`absolute`** 에서 **`fixed`** 로 변하게되어 window.scrollY 값이 720 → 675 즉, `gnbBox` 의 **높이값인 45px만큼 줄어들고**
+
+닫기버튼을 누르면 position 값이 `absolute` 로 변하게 되면서 window.scrollY 값이 675 → 720 으로 다시 변한것을 확인할 수 있었습니다.
+
+> 💡 닫기 버튼을 누를 때 postion값이 absolute로 변경하라는 조건은 넣지 않았습니다!
+
+### ✏️ 문제현상 이유
+
+`gnbBox`의 각 카테고리를 누르면, overflow-y: hidden이 적용되면서 우측에 스크롤바가 사라집니다.
+
+그러면 화면이 우측으로 살짝 커지면서 퍼센트 너비로 적용된 이미지 크기가 바뀌고, 그러면서 화면 스크롤이 살짝 움직입니다.
+이때 **`scroll 이벤트`** 가 **자동으로 발생**해버리고 결국 position 값이 변하게 됩니다.
+
+반대로 **`wheel 이벤트`** 는 화면의 **스크롤과 상관 없이 마우스 휠이 동작할 때만 발생** 하기 때문에, 화면 스크롤이 살짝 움직여도 문제가 없는 것입니다.
+
+### ✅ 해결
+
+간단하게, 버튼을 눌렀을 때 scroll 이벤트가 동작하지 않도록 예외 처리를 추가하면 됩니다.
+
+```js
+let preScrollTop = 0;
+window.addEventListener(
+  'scroll',
+  _.throttle(() => {
+    let nextScrollTop = window.scrollY;
+
+    if (nextScrollTop < preScrollTop) {
+    	// 스크롤 올릴 때 실행
+      	gnbBox.style.position = 'fixed';
+    } else if (nextScrollTop > preScrollTop) {
+      	// 스크롤 내릴 때 실행
+      	gnbBox.style.position = 'absolute';
+       // // GNB가 켜졌을 때, 스크롤 이벤트 핸들러가 동작하지 않도록 처리!
+    	if (isActiveGNB) return
+    }
+
+// ...
+```
+
+위의 코드 처럼 GNB가 켜졌을때 스크롤 이벤트 핸들러가 동작하지 않도록 처리하면 됩니다.

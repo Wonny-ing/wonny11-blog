@@ -1,34 +1,69 @@
-## 2023 Year Review!
+## 🔖 서비스 내용
 
-- Employee’s basic information. For identification and analysis purposes, it is also important that you add a section where the employee’s basic information can be written, including their name, ID, and position in the company.
-  Review period. To streamline the entire annual review process, it is critical that you add a section that states the period for which the review is being conducted.
-- Tasks to be evaluated. This is the main section of the annual review template, so mention all the yearly goals for which the employee is being evaluated.
-  Performance score rating. For each task mentioned earlier, make sure you leave adequate space where the reviewer can rate the employee's quality of work. You can do this through a 5-star review system, Likert scale or even by adding an empty box where reviewers can describe their evaluation. Some of
+시니어 타겟으로, 여행자를 유형별로 그룹화하여 그룹 특성에 맞는 패키지 여행상품을 추천하는 서비스 입니다.
 
-## What Is an Annual Review?
+시니어들이 큐레이션 및 그룹핑 서비스를 통해 여행 성향이 맞는 사람들과 함께 패키지 여행을 할 수 있다는 메세지를 효과적으로 전달하여 고투게더 플랫폼의 활성화를 돕는 것이 이 프로젝트의 목표였습니다.
 
-An annual review, or a year-end review, is the process of evaluating employee performance over the past year. Annual reviews are typically done by managers, but can also be self-conducted.
+위 서비스에서 제공하는 핵심 기능은 5가지입니다.
 
-Generally, an annual performance assessment includes:
+1. 상세한 여행 큐레이션 서비스 및 테마별 상품 리스트 제공
+2. 나이/성별/취미 등 여행자 그룹핑 서비스 제공
+3. 패키지 여행상품 구매를 위한 결제 기능 및 구매 내역 조회 기능
+4. 1:1 문의 상담 및 여행 후 리뷰 기능을 제공
+5. 관리자페이지에서 사용자관리 및 상품관리 기능
 
-Tracking employee KPIs
-Identifying employee's strengths and weaknesses
-Measuring employee quality of work
-Providing feedback on potential areas of improvement
-Needless to say, an annual review is a critical part of any successful business.
+패스트캠퍼스 메가바이트스쿨 프론트엔드 과정 기업협업을 통해 해당 기능의 컨텐츠를 개발하였습니다.
 
-It helps businesses identify high-performing employees, boost employee engagement, relay expectations, and help foster a progressive environment of growth and progress.
+## 🛠 기술 스택
 
-On the other hand, employees can also use this time to communicate their future expectations to the company; be it their next year's KPIs, personal goals, monetary compensation, bonus structure breakdown, or expected promotions.
+- React.js, TypeScript
+- vite
+- Redux-toolkit, RTK query
+- React-hook-form
+- styled-component
 
-At the end of an annual review, managers evaluate whether the company's future goals align with employees' objectives, and decide if they should be recommended for a raise or promotion in the coming year.
+## ⌨️ 개발 내용
 
-## How to Write a Year-End Review
+### 공통 컴포넌트 모듈화
 
-When it comes to preparing for a year-end review, there isn’t any one-size-fits-all approach.
+서비스에 사용되는 input, button과 같은 컴포넌트를 모듈화하여 범용적으로 사용할 수 있게 개발하였습니다.
+또한 디자이너가 의도한 select button에 맞는 라이브러리가 존재하지 않아 직접 select 컴포넌트를 커스텀하여 작성하였습니다. TypeScript를 도입하였기 때문에 서비스에 필요한 prop을 직접 선언하고 관리하였습니다.
 
-This is majorly due to the type of industry you’re in, and the fact that every employee has unique goals for which they’re being evaluated. But that doesn't mean that you can’t create a generic layout for all performance reviews.
+### 서버 통신 로직 분리
 
-In this section, we look at some of the most common sections you can add to your annual review templates:
+redux를 이용하여 전역 상태를 관리하고, RTK query를 사용하여 비동기 통신하였습니다. 컴포넌트로부터 비동기 로직을 분리할 수 있어 가독성을 향상시킬 수 있었습니다.
 
-Header. The header is the first thing that the reviewer and reviewee will notice on the annual review document, so it's a good idea to add your company’s name, logo and branding to give it an overall professional outlook. In Visme, you can upload your logo with a few clicks and add it to any project.
+### 서버 데이터 캐싱 관리
+
+RTK Query 라이브러리를 사용하여 API 요청 캐싱 관리를 하였습니다. 해당 라이브러리를 선택한 이유는 Redux-Toolkit과 RTK Query는 둘 다 Redux를 기반으로 하며, Redux를 사용하는 프로젝트에서는 함께 사용할 수 있는 좋은 라이브러리였기 때문입니다. 비동기 처리를 하기 편리하며, 캐싱을 통하여 불필요한 api 요청을 방지하였습니다. TypeScript와 함께 사용할 때 타입 안정성을 보장하므로 코드를 더 안정적으로 구현이 가능했습니다.
+
+### 페이지네이션
+
+데이터가 많은 경우 사용자 경험을 향상시키기 위해 페이지네이션 기능을 구현하였습니다. 이를 통해 사용자가 보다 쉽게 원하는 데이터를 찾을 수 있게 되었고, 불필요한 데이터 로딩을 최소화할 수 있게 되었습니다.
+
+### 유효성 검사 기능 구현
+
+React-hook-form 라이브러리를 활용하여 1:1문의글 및 리뷰 작성시 사용자의 편의를 높이기 위해 문의글 폼의 validation 기준 미충족시 경고 메시지 등을 추가적으로 구현했습니다.
+
+### 부분 모바일뷰 적용
+
+프로젝트 기간내에 디자이너의 작업 지연으로 인해 전체적인 모바일 디자인이 완료되지 않았지만, 메인 페이지와 상품 상세 페이지는 우선적으로 디자인 작업을 완료하여 모바일 뷰가 적용될 수 있었습니다.
+
+## 💡 성장 경험
+
+### 비개발 직군과의 협업
+
+이 프로젝트는 디자인3, 백엔드3, 프론트엔드3 로 총 9명으로 구성되어 있습니다. 프론트엔드 팀을 중심으로 모두 기획 단계부터 함께 참여했으며, 개발 과정에서도 끊임없는 대화를 나누었습니다. 하지만 진행과정에 있어 생각지 못한 기능이 추가됨에 따라 디자이너와 백엔드 개발자 간의 의사소통이 원활하지 않은 상황이 발생하였습니다.
+이는 주로 디자이너가 UI 측면에서 설명하고, 백엔드 개발자는 데이터 관점에서 이야기하기 때문이었습니다.
+
+서로 파트가 다르다 보니 이해하기 어려운 부분이 있었는데, 이러한 상황에서 프론트엔드 개발자들이 의사소통의 다리 역할을 했습니다. 디자이너가 설명하는 부분을 기술적인 측면에서 해석하고, 백엔드 개발자가 원하는 데이터 구조를 UI 측면에서 구현할 수 있는 방법을 제시하며, 서로의 요구사항을 맞추는 데 노력하였습니다.
+
+이와 같이 기술적으로 해결할 수 있는 문제와 그렇지 않은 문제에 대해 함께 논의하며 서비스를 발전시켰습니다. 단순히 기능만 구현하는 것이 아닌, 서비스의 비즈니스를 이해하고 코드에 가치를 담으려 노력하였습니다.
+
+### 사용자 니즈 파악
+
+서비스에 대한 프로젝트 기획할 때 제대로된 사용자 니즈 파악과 이에 대한 검증이 필요하다는 것을 알게 되었습니다. 겉으로 보이는 사용자가 가진 문제점이 아닌 그 안에 숨겨진 니즈를 파악하는 데 집중하기 위해 노력하였습니다.
+
+### 사용자 경험
+
+개발자 입장에선 서비스가 완성되었지만, 사용자 입장에서는 많이 부족할 때가 많다는 것을 알게 되었습니다. FE 측면에서 완성도를 높이기 위해선 사용자 경험에 집중해야 하는 것을 깨달았습니다. 이 서비스는 50-70대인 시니어 타겟으로 하였기 때문에, 더 직관적인 UI/UX 요소를 넣으려 노력하였습니다.

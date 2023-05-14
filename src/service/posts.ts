@@ -28,8 +28,6 @@ export async function getNonFeaturedPosts(): Promise<Post[]> {
 }
 
 export const getAllPosts = cache(async () => {
-  console.log('getAllPosts');
-
   const filePath = path.join(process.cwd(), 'data', 'posts.json');
   return readFile(filePath, 'utf-8')
     .then<Post[]>(JSON.parse)

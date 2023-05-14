@@ -1,57 +1,44 @@
-React is a JavaScript library for building user interfaces.
+## 리액트란?
 
-## A Simple Component
+리액트란 유저 인터페이스를 만들기 위한 자바스크립트 라이브러리입니다.
+ui를 빠르게 만들고, 간편하게 만들기 위해서 페이스북에서 개발되었습니다.
 
-React components implement a `render()` method that takes input data and returns what to display. This example uses an XML-like syntax called JSX. Input data that is passed into the component can be accessed by `render()` via `this.props`.
+또한 리액트는 컴포넌트들의 집합체라고도 할 수 있습니다.
 
-```jsx
-class HelloMessage extends React.Component {
-  render() {
-    return <div>Hello {this.props.name}</div>;
-  }
-}
+### SPA
 
-root.render(<HelloMessage name='Taylor' />);
-```
+**`SPA(Single Page Application)`** 는 사용자가 버튼을 클릭했을때 다른 페이지를 다운받아 화면이 깜빡거리면서 리프레쉬 되는 것이 아니라
+한 어플리케이션 내에서 해당 컴포넌트를 보여주거나 숨겨서 페이지내에서 자유자재로 네비게이션 할 수 있는것을 말합니다.
 
-## Declarative
+### CSR
 
-React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.
+**`CSR(Client Side Rendering)`** 는 사용자가 웹 어플리케이션에 접속했을때, 바로 즉각적으로 html을 보는 것이아니라
+react 라이브러리 모두 다운받은 다음에 사용자 화면 ui에 보여지도록 하는것으로 Client 측에서 렌더링이 이루어집니다.
 
-A paragraph with _emphasis_ and **strong importance**.
+### 라이브러리 vs 프레임워크
 
-> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
+- **라이브러리** - 좁은 문제를 해결하기 위한 것, 즉 작은 솔루션 단위 - 리액트 ui를 만들 수 있게 해주는 라이브러리 - 자율성 보장(네트워크 통신이 필요하면 브라우저에서 제공하는거 다른 네트워크 통신에 필요한 라이브러리를 내가 원하는 것을 사용할 수 있음) - 배울게 상대적으로 적어서 진입장벽이 낮다.
+  <br />
+- **프레임워크**
+  - 무언가를 만드는데 필요한 모든것들이 갖추어진 것
+  - ui, 라우팅, 네트워크 통신에 필요한 http clients 등등 다 갖춰져있으므로, 프레임워크에서 정해진 것만 사용하면 됨
+  - 권장되는 모든것들을 공부해야함(접근성 낮음), 자율성이 떨어짐
 
-- Lists
-- [ ] todo
-- [x] done
+### 어떤 단위로 컴포넌트를 나눠야 할까요?
 
-## Component-Based
+1. 재사용성(DRY): 재사용성이 높을 경우 나누는 것이 좋습니다.
+2. 단일책임(SR): 재사용할 확률이 낫지만 한 컴포넌트에서 너무 많은 일들을 하게 된다면 더 작은 단위로 나누어서 작은 컴포넌트로 나누는 것이 좋습니다.
 
-Build encapsulated components that manage their own state, then compose them to make complex UIs.
+### 리액트 정리
 
-Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.
+데이터를 `state`(내부 상태), `props`(외부로 부터 전달받은 상태)가 존재하고,
+이 두가지를 나타내는 `render`가 있습니다.
+state, props둘 중 하나라도 상태가 변경될때마다 re-render 됩니다.
 
-## Learn Once, Write Anywhere
+> 💡 리액트에서 render는 `return` 되는 것들을 말합니다.
 
-We don’t make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code.
+### 함수형 컴포넌트(훅)이란?
 
-React can also render on the server using Node and power mobile apps using React Native.
+훅은 재사용 가능한 함수들! use로 시작하는 함수들은 리액트 훅이라 생각하면됩니다.
 
-![React Office desk](https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80)
-
-> The most important addition in React 18 is something we hope you never have to think about: concurrency. We think this is largely true for application developers, though the story may be a bit more complicated for library maintainers.
-
-Concurrency is not a feature, per se. It’s a new behind-the-scenes mechanism that enables React to prepare multiple versions of your UI at the same time. You can think of concurrency as an implementation detail — it’s valuable because of the features that it unlocks. React uses sophisticated techniques in its internal implementation, like priority queues and multiple buffering. But you won’t see those concepts anywhere in our public APIs.
-
-When we design APIs, we try to hide implementation details from developers. As a React developer, you focus on what you want the user experience to look like, and React handles how to deliver that experience. So we don’t expect React developers to know how concurrency works under the hood.
-
-However, Concurrent React is more important than a typical implementation detail — it’s a foundational update to React’s core rendering model. So while it’s not super important to know how concurrency works, it may be worth knowing what it is at a high level.
-
-A key property of Concurrent React is that rendering is interruptible. When you first upgrade to React 18, before adding any concurrent features, updates are rendered the same as in previous versions of React — in a single, uninterrupted, synchronous transaction. With synchronous rendering, once an update starts rendering, nothing can interrupt it until the user can see the result on screen.
-
-In a concurrent render, this is not always the case. React may start rendering an update, pause in the middle, then continue later. It may even abandon an in-progress render altogether. React guarantees that the UI will appear consistent even if a render is interrupted. To do this, it waits to perform DOM mutations until the end, once the entire tree has been evaluated. With this capability, React can prepare new screens in the background without blocking the main thread. This means the UI can respond immediately to user input even if it’s in the middle of a large rendering task, creating a fluid user experience.
-
-Another example is reusable state. Concurrent React can remove sections of the UI from the screen, then add them back later while reusing the previous state. For example, when a user tabs away from a screen and back, React should be able to restore the previous screen in the same state it was in before. In an upcoming minor, we’re planning to add a new component called `<Offscreen>` that implements this pattern. Similarly, you’ll be able to use Offscreen to prepare new UI in the background so that it’s ready before the user reveals it.
-
-Concurrent rendering is a powerful new tool in React and most of our new features are built to take advantage of it, including Suspense, transitions, and streaming server rendering. But React 18 is just the beginning of what we aim to build on this new foundation.
+> 💡 **`Hooks`** 은 (함수들은) 값의 재사용이 아니라 로직의 재사용을 위한 것입니다.

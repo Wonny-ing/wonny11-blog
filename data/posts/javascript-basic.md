@@ -1,9 +1,7 @@
 ## What's JavaScript?
 
-JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as Node.js, Apache CouchDB and Adobe Acrobat. JavaScript is a prototype-based, multi-paradigm, single-threaded, dynamic language, supporting object-oriented, imperative, and declarative (e.g. functional programming) styles. Read more about JavaScript.
+JavaScript (JS)는 경량화된 인터프리터 언어 또는 JIT(Just-In-Time) 컴파일된 프로그래밍 언어로, 일급 함수를 갖추고 있습니다. 가장 잘 알려진 용도는 웹 페이지의 스크립팅 언어로 사용되지만, Node.js, Apache CouchDB, Adobe Acrobat 등과 같은 비브라우저 환경에서도 많이 사용됩니다. JavaScript는 프로토타입 기반의 멀티 패러다임 언어로, 객체지향, 명령형, 선언형(예: 함수형 프로그래밍) 스타일을 지원합니다. 자바스크립트 자체에 대한 내용이며, 웹 페이지나 다른 호스트 환경과 관련된 부분은 다른 섹션에서 다룹니다. 웹 페이지에 특화된 API에 대한 정보는 Web API 및 DOM을 참조하십시오.
 
-This section is dedicated to the JavaScript language itself, and not the parts that are specific to Web pages or other host environments. For information about APIs that are specific to Web pages, please see Web APIs and DOM.
+JavaScript의 표준은 ECMAScript 언어 명세(ECMA-262)와 ECMAScript 국제화 API 명세(ECMA-402)입니다. 브라우저 중 한 곳에서 기능이 구현되면 해당 기능을 문서화하려고 합니다. 이는 새로운 ECMAScript 기능에 대한 제안 중 일부가 이미 브라우저에서 구현되었을 때 발생합니다. MDN 문서에서 사용되는 예시 및 문서에서는 이러한 새로운 기능을 사용할 수 있습니다. 이는 일반적으로 단계 3과 4 사이에 있으며, 공식적으로 명세가 게시되기 전에 이루어집니다.
 
-The standards for JavaScript are the ECMAScript Language Specification (ECMA-262) and the ECMAScript Internationalization API specification (ECMA-402). As soon as one browser implements a feature, we try to document it. This means that cases where some proposals for new ECMAScript features have already been implemented in browsers, documentation and examples in MDN articles may use some of those new features. Most of the time, this happens between the stages 3 and 4, and is usually before the spec is officially published.
-
-Do not confuse JavaScript with the Java programming language. Both "Java" and "JavaScript" are trademarks or registered trademarks of Oracle in the U.S. and other countries. However, the two programming languages have very different syntax, semantics, and use.
+JavaScript를 자바(Java) 프로그래밍 언어와 혼동하지 마십시오. "Java"와 "JavaScript"는 Oracle의 미국 및 기타 국가에서의 상표 또는 등록 상표입니다. 그러나 두 프로그래밍 언어는 문법, 의미론 및 사용 방식이 매우 다릅니다.
