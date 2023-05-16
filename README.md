@@ -17,4 +17,4 @@
 
 ## 배포
 
-[워니의 블로그](https://wonny-blog.vercel.app/)
+[워니의 블로그](https://wonny11-blog.vercel.app/)
